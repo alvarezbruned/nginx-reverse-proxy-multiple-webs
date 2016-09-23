@@ -5,8 +5,10 @@ I will make a compose to create a dns container, but not now.
 #To execute:
 ##chmod +x *.sh && ./generator.sh && docker-compose up -d && ./nginx_gen.sh
 the "generator.sh" create a docker-compose.yml but first it asks the number of domains and then de domain names.
-Then executes docker-compose up -d inside the folder.
-And it's necessary execute the second sh "nginx_gen.sh" to create de default.conf nginx file to capture de IPs of containers and fix de ports.
+Then it executes docker-compose up -d inside the folder.
+And finally it runs the second sh "nginx_gen.sh" to create de default.conf nginx file to capture de IPs of containers and fix de ports.
+
+The domains without "www" because script adds then.
 
 example with 2 websites.
 Generator.sh out the folder tree and docker-compose.yml. Domains demo: domain1.com domain2.com:
