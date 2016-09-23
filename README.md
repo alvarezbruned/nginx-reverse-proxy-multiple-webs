@@ -12,7 +12,6 @@ example with 2 websites this it makes de generator.sh with answer 2 domains and 
 website_domain1.com:
     image: albertalvarezbruned/webnginx
     expose:
-    
             - "8081"
     volumes:
         - ./logs/:/var/log/nginx/
