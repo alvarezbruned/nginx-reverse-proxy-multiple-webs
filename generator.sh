@@ -1,5 +1,4 @@
 #!/bin/bash
-# I=${1-'1'}
 echo 'Write the number of domains you will generate and press ENTER'
 read I
 OUTFILE='config.sh'
