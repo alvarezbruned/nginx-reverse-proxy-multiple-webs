@@ -8,10 +8,9 @@ And it's necessary execute the second sh "nginx_gen.sh" to create de default.con
 
 example with 2 websites this it makes de generator.sh with answer 2 domains and domain names: domain1.com domain2.com:
 
-website_domain1.com:
 
+website_domain1.com:
     image: albertalvarezbruned/webnginx
-    
     expose:
     
             - "8081"
