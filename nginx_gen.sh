@@ -24,6 +24,7 @@ do
 
   echo 'server {' >> $OUTFILE3
   echo '    listen  80;' >> $OUTFILE3
+  echo '    server_name '$DOMAIN';' >> $OUTFILE3
   echo '    server_name  www.'$DOMAIN';' >> $OUTFILE3
   echo '    access_log  /var/log/nginx/nginx-reverse-proxy.access.log;' >> $OUTFILE3
   echo '    error_log  /var/log/nginx/nginx-reverse-proxy.error.log;' >> $OUTFILE3
