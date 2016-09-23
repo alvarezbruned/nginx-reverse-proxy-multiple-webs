@@ -25,8 +25,8 @@ do
   echo 'server {' >> $OUTFILE3
   echo '    listen  80;' >> $OUTFILE3
   echo '    server_name  www.'$DOMAIN';' >> $OUTFILE3
-  echo '    access_log  /var/log/nginx/nginx-reverse-proxy-saavedra.access.log;' >> $OUTFILE3
-  echo '    error_log  /var/log/nginx/nginx-reverse-proxy-saavedra.error.log;' >> $OUTFILE3
+  echo '    access_log  /var/log/nginx/nginx-reverse-proxy.access.log;' >> $OUTFILE3
+  echo '    error_log  /var/log/nginx/nginx-reverse-proxy.error.log;' >> $OUTFILE3
   echo '    root   /var/www/html;' >> $OUTFILE3
   echo '    index  index.html;' >> $OUTFILE3
   echo '    location / {' >> $OUTFILE3
