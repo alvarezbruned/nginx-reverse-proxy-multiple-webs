@@ -23,30 +23,7 @@ do
   # use $DOMAIN para lower -> ${variable,,}
   MIN=`echo $DOMAIN | cut -d '.' -f 1`
   MINS=`echo ${MIN^^}`
-#  echo '[ -z "${'$MINS'_PORT_'$PORT'_TCP_ADDR}" ] && echo "\$'$MINS'_PORT_'$PORT'_TCP_ADDR is not set" || sed -i "s/'$MINS'_IP/${'$MINS'_PORT_'$PORT'_TCP_ADDR}/" /etc/nginx/conf.d/default.conf' >> $OUTFILE
-#  echo '[ -z "${'$MINS'_PORT_'$PORT'_TCP_PORT}" ] && echo "\$'$MINS'_PORT_'$PORT'_TCP_PORT is not set" || sed -i "s/'$MINS'_PORT/${'$MINS'_PORT_'$PORT'_TCP_PORT}/" /etc/nginx/conf.d/default.conf' >> $OUTFILE
   MINSLOW=`echo ${MINS,,}`
-#  echo 'upstream '$MINSLOW'  {' >> $OUTFILE2
-#  echo '      server '$MINS'_IP:'$MINS'_PORT;' >> $OUTFILE2
-#  echo '}' >> $OUTFILE2
-
-#  echo 'server {' >> $OUTFILE3
-#  echo '    listen  80;' >> $OUTFILE3
-#  echo '    server_name '$DOMAIN';' >> $OUTFILE3
-#  echo '    access_log  /var/log/nginx/nginx-reverse-proxy-saavedra.access.log;' >> $OUTFILE3
-#  echo '    error_log  /var/log/nginx/nginx-reverse-proxy-saavedra.error.log;' >> $OUTFILE3
-#  echo '    root   /var/www/html;' >> $OUTFILE3
-#  echo '    index  index.html;' >> $OUTFILE3
-#  echo '    location / {' >> $OUTFILE3
-#  echo '     proxy_pass  http://'$MINSLOW';' >> $OUTFILE3
-#  echo '     proxy_next_upstream error timeout invalid_header http_500 http_502 http_503 http_504;' >> $OUTFILE3
-#  echo '     proxy_redirect off;' >> $OUTFILE3
-#  echo '     proxy_buffering off;' >> $OUTFILE3
-#  echo '     proxy_set_header        Host            $host;' >> $OUTFILE3
-#  echo '     proxy_set_header        X-Real-IP       $remote_addr;' >> $OUTFILE3
-#  echo '     proxy_set_header        X-Forwarded-For $proxy_add_x_forwarded_for;' >> $OUTFILE3
-#  echo '   }' >> $OUTFILE3
-#  echo '}' >> $OUTFILE3
   echo 'website_'$DOMAIN':' >> $OUTFILE4
   echo '    image: albertalvarezbruned/webnginx' >> $OUTFILE4
   echo '    expose:' >> $OUTFILE4
@@ -78,7 +55,6 @@ echo 'echo "CHANGED DEFAULT CONF"' >> $OUTFILE
 echo 'cat /etc/nginx/conf.d/default.conf' >> $OUTFILE
 echo 'echo "END UPDATING DEFAULT CONF"' >> $OUTFILE
   echo 'nginx:' >> $OUTFILE4
-#  echo '    build: ./nginx' >> $OUTFILE4
   echo '    image: albertalvarezbruned/nginx' >> $OUTFILE4
   echo '    expose:' >> $OUTFILE4
   echo '        - "80"' >> $OUTFILE4
@@ -90,30 +66,5 @@ echo 'echo "END UPDATING DEFAULT CONF"' >> $OUTFILE
   echo '    volumes:' >> $OUTFILE4
   echo '        - ./logs/:/var/log/nginx/' >> $OUTFILE4
   echo '        - ./nginx/config:/etc/nginx/conf.d' >> $OUTFILE4
-#`chmod u+x $OUTFILE`
-#`chmod u+x $OUTFILE2`
-#`cat $OUTFILE3 >> $OUTFILE2`
-#`cp $OUTFILE ./nginx/config/$OUTFILE`
-#`cp $OUTFILE2 ./nginx/config/default.conf`
-#rm $OUTFILE
-#rm $OUTFILE2
 rm $OUTFILE3
 rm LINKS
-#create Dockerfile FROM image
-#mkdir nginx
-#touch nginx/Dockerfile
-#echo 'FROM albertalvarezbruned/nginx' >> nginx/Dockerfile
-#echo '# Copy all config files' >> nginx/Dockerfile
-#echo 'COPY config/default.conf /etc/nginx/conf.d/default.conf' >> nginx/Dockerfile
-# echo 'COPY nginx.conf /etc/nginx/nginx.conf' >> nginx/Dockerfile
-#echo 'COPY config/config.sh /etc/nginx/config.sh' >> nginx/Dockerfile
-#echo 'RUN ["chmod", "+x", "/etc/nginx/config.sh"]' >> nginx/Dockerfile
-#echo '# Copy default webpage' >> nginx/Dockerfile
-#echo 'RUN rm /var/www/html/index.nginx-debian.html' >> nginx/Dockerfile
-
-
-#echo 'COPY html/index.html /var/www/html/index.html' >> nginx/Dockerfile
-# quitado no se si en gitbuh image se contempla
-
-#echo '# Define default command.' >> nginx/Dockerfile
-#echo 'CMD /etc/nginx/config.sh && nginx' >> nginx/Dockerfile
