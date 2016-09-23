@@ -3,6 +3,7 @@ First you must have installed bind9 and docker engine and docker-compose.
 I will make a compose to create a dns container, but not now.
 
 the "generator.sh" create a docker-compose.yml but first it asks the number of domains and then de domain names.
+Then executes docker-compose up -d inside the folder.
 And it's necessary execute the second sh "nginx_gen.sh" to create de default.conf nginx file to capture de IPs of containers and fix de ports.
 
 example with 2 websites this it makes de generator.sh with answer 2 domains and domain names: domain1.com domain2.com:
