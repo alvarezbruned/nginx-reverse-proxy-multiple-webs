@@ -6,7 +6,8 @@ the "generator.sh" create a docker-compose.yml but first it asks the number of d
 Then executes docker-compose up -d inside the folder.
 And it's necessary execute the second sh "nginx_gen.sh" to create de default.conf nginx file to capture de IPs of containers and fix de ports.
 
-example with 2 websites this it makes de generator.sh with answer 2 domains and domain names: domain1.com domain2.com:
+example with 2 websites.
+Generator.sh out the folder tree and docker-compose.yml. Domains demo: domain1.com domain2.com:
 
 
 ######website_domain1.com:
