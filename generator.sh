@@ -1,7 +1,7 @@
 #!/bin/bash
 echo 'Write the number of domains you will generate and press ENTER'
 read I
-OUTFILE='config.sh'
+
 OUTFILE2='default2.conf'
 OUTFILE3='3prooffile.sh'
 OUTFILE4='docker-compose.yml'
@@ -10,8 +10,7 @@ rm $OUTFILE4
 ITERATION='1'
 PORT='8081'
 mkdir web nginx web/html nginx/config
-echo 'sleep 10' >> $OUTFILE
-echo 'START UPDATING DEFAULT CONF' >> $OUTFILE
+
 while [ "$I" -ne 0 ]
 do
   mkdir web/config$ITERATION
@@ -50,9 +49,6 @@ do
   let I-=1
   echo 'ou yeah'
 done
-echo 'echo "CHANGED DEFAULT CONF"' >> $OUTFILE
-echo 'cat /etc/nginx/conf.d/default.conf' >> $OUTFILE
-echo 'echo "END UPDATING DEFAULT CONF"' >> $OUTFILE
   echo 'nginx:' >> $OUTFILE4
   echo '    image: albertalvarezbruned/nginx' >> $OUTFILE4
   echo '    expose:' >> $OUTFILE4
