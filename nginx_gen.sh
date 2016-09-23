@@ -49,3 +49,5 @@ done
 `cp $OUTFILE2 ./nginx/config/default.conf`
 rm $OUTFILE2
 rm $OUTFILE3
+NGINX=`docker ps | grep _nginx_ | cut -d ' ' -f 1`
+docker exec -it $NGINX service nginx reload
