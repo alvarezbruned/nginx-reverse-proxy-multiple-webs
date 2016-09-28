@@ -7,10 +7,22 @@ OUTFILE2='default2.conf'
 OUTFILE3='3prooffile.sh'
 ITERATION='0'
 PORT='8081'
+rm /etc/bind/named.conf
+echo '// This is the primary configuration file for the BIND DNS server named.' >> /etc/bind/named.conf
+echo '//' >> /etc/bind/named.conf
+echo '// Please read /usr/share/doc/bind9/README.Debian.gz for information on the ' >> /etc/bind/named.conf
+echo '// structure of BIND configuration files in Debian, *BEFORE* you customize ' >> /etc/bind/named.conf
+echo '// this configuration file.' >> /etc/bind/named.conf
+echo '//' >> /etc/bind/named.conf
+echo '// If you are just adding zones, please do that in /etc/bind/named.conf.local' >> /etc/bind/named.conf
+echo 'include "/etc/bind/named.conf.options";' >> /etc/bind/named.conf
+echo 'include "/etc/bind/named.conf.local";' >> /etc/bind/named.conf
+echo 'include "/etc/bind/named.conf.default-zones";' >> /etc/bind/named.conf
 while [ "$I" -ne 0 ]
 do
   DOMAIN="${DOMAINS[$ITERATION]}"
   echo $DOMAIN
+  bind.sh $DOMAIN
   CONTAINER="$(docker ps | grep ${DOMAIN} | cut -d ' ' -f 1)"
   IP="$(docker inspect --format '{{ .NetworkSettings.IPAddress }}' ${CONTAINER})"
   DOMAI="${DOMAINS[$ITERATION]}"
@@ -25,7 +37,7 @@ do
   echo 'server {' >> $OUTFILE3
   echo '    listen  80;' >> $OUTFILE3
   echo '    server_name '$DOMAIN';' >> $OUTFILE3
-  echo '    server_name  www.'$DOMAIN';' >> $OUTFILE3
+  echo '    server_name www.'$DOMAIN';' >> $OUTFILE3
   echo '    access_log  /var/log/nginx/nginx-reverse-proxy.access.log;' >> $OUTFILE3
   echo '    error_log  /var/log/nginx/nginx-reverse-proxy.error.log;' >> $OUTFILE3
   echo '    root   /var/www/html;' >> $OUTFILE3
