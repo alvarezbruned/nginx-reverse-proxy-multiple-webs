@@ -22,7 +22,7 @@ while [ "$I" -ne 0 ]
 do
   DOMAIN="${DOMAINS[$ITERATION]}"
   echo $DOMAIN
-  bind.sh $DOMAIN
+  ./bind.sh $DOMAIN
   CONTAINER="$(docker ps | grep ${DOMAIN} | cut -d ' ' -f 1)"
   IP="$(docker inspect --format '{{ .NetworkSettings.IPAddress }}' ${CONTAINER})"
   DOMAI="${DOMAINS[$ITERATION]}"
