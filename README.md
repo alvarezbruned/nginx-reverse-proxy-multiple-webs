@@ -1,4 +1,4 @@
-# nginx-reverse-proxy-multiple-webs
+# nginx-reverse-proxy-multiple-webs (multiple containers web)
 First you must have installed bind9 and docker engine and docker-compose.
 I will make a compose to create a dns container, but not now.
 THE Bash file will DELETE your /etc/bind/named.conf CAREFUL! Beacuse it makes one new file with domains and restart bind9 service
