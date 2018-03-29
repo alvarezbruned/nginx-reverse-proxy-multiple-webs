@@ -7,7 +7,8 @@ OUTFILE2='default2.conf'
 OUTFILE3='3prooffile.sh'
 ITERATION='0'
 PORT='8081'
-rm /etc/bind/named.conf
+#rm /etc/bind/named.conf
+mv /etc/bind/named.conf /etc/bind/named.conf.back
 echo '// This is the primary configuration file for the BIND DNS server named.' >> /etc/bind/named.conf
 echo '//' >> /etc/bind/named.conf
 echo '// Please read /usr/share/doc/bind9/README.Debian.gz for information on the ' >> /etc/bind/named.conf
@@ -26,10 +27,13 @@ do
   CONTAINER="$(docker ps | grep ${DOMAIN} | cut -d ' ' -f 1)"
   IP="$(docker inspect --format '{{ .NetworkSettings.IPAddress }}' ${CONTAINER})"
   DOMAI="${DOMAINS[$ITERATION]}"
-  DOMAIN=`echo ${DOMAI,,}`
+  #DOMAIN=`echo ${DOMAI,,}`
+  DOMAIN=`echo "$DOMAI" | awk '{print tolower($0)}'`
   MIN=`echo $DOMAIN | cut -d '.' -f 1`
-  MINS=`echo ${MIN^^}`
-  MINSLOW=`echo ${MINS,,}`
+  #MINS=`echo ${MIN^^}`
+  MINS=`echo "$MIN" | awk '{print toupper($0)}'`
+  #MINSLOW=`echo ${MINS,,}`
+  MINSLOW=`echo "$MINS" | awk '{print tolower($0)}'`
   echo 'upstream '$MINSLOW'  {' >> $OUTFILE2
   echo '      server '$IP':'$PORT';' >> $OUTFILE2
   echo '}' >> $OUTFILE2
