@@ -1,6 +1,7 @@
 #!/bin/bash
 var=`cat ./docker-compose.yml | grep website | grep - | cut -d '_' -f 2 | cut -d ':' -f 1`
 DOMAINS=( $var )
+echo $DOMAINS
 TOTAL=${#DOMAINS[@]}
 I=$TOTAL
 OUTFILE2='default2.conf'
@@ -25,7 +26,9 @@ do
   echo $DOMAIN
   ./bind.sh $DOMAIN
   CONTAINER="$(docker ps | grep ${DOMAIN} | cut -d ' ' -f 1)"
-  IP="$(docker inspect --format '{{ .NetworkSettings.IPAddress }}' ${CONTAINER})"
+  echo $CONTAINER
+  IP="$(docker inspect --format '{{ NetworkSettings.Networks.prueba_default.IPAddress }}' ${CONTAINER})"
+  echo $IP
   DOMAI="${DOMAINS[$ITERATION]}"
   #DOMAIN=`echo ${DOMAI,,}`
   DOMAIN=`echo "$DOMAI" | awk '{print tolower($0)}'`
