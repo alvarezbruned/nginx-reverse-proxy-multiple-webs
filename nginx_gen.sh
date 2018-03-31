@@ -27,7 +27,9 @@ do
   ./bind.sh $DOMAIN
   CONTAINER="$(docker ps | grep ${DOMAIN} | cut -d ' ' -f 1)"
   echo $CONTAINER
-  IP="$(docker inspect --format '{{ NetworkSettings.Networks.prueba_default.IPAddress }}' ${CONTAINER})"
+  #IP="$(docker inspect --format '{{ NetworkSettings.Networks.prueba_default.IPAddress }}' ${CONTAINER})"
+  IP=`docker inspect ${CONTAINER} | grep \"IPAddress\":\ \"1 | sed -e 's/://g' | sed -e 's/\"//g' | sed -e 's/,//g' | sed -e 's/IPAddress//g' | sed -e 's/\ //g'`
+  
   echo $IP
   DOMAI="${DOMAINS[$ITERATION]}"
   #DOMAIN=`echo ${DOMAI,,}`

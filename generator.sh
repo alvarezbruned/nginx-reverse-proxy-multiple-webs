@@ -40,7 +40,7 @@ do
   echo '  mysql'$ITERATION':' >> $OUTFILE4
   echo '    image: albertalvarezbruned/lamp:mysql' >> $OUTFILE4
   echo '    environment:' >> $OUTFILE4
-  echo '      - MYSQL_DATABASE=bbddname' >> $OUTFILE4
+  echo '      - MYSQL_DATABASE=bbddname'$ITERATION >> $OUTFILE4
   echo '      - MYSQL_USER=bbdduser' >> $OUTFILE4
   echo '      - MYSQL_PASSWORD=bbddpassword' >> $OUTFILE4
   echo '      - MYSQL_ROOT_PASSWORD=root' >> $OUTFILE4
